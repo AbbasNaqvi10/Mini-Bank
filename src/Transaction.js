@@ -65,7 +65,6 @@ const Transaction = () => {
                         <input placeholder="Enter account number..."
                         type='number'
                         name='account'
-                        min="0"
                         value={values.account}
                         onChange={handleChange}
                         ></input>
@@ -76,7 +75,6 @@ const Transaction = () => {
                         <input placeholder="Enter amount..."
                         type='number'
                         name='amount'
-                        min="0"
                         value={values.amount}
                         onChange={handleChange}
                         ></input>
@@ -95,6 +93,7 @@ const Transaction = () => {
         amount: '',
     });
     var length = values.account;
+    var amlength = values.amount;
 
     const [errors, setErrors] = useState({});
 
@@ -128,13 +127,18 @@ const Transaction = () => {
         } else if (!/^[0-9]+$/.test(values.account) && values.account.value<0) {
             errors.account = 'amount is invalid! Enter Numbers only';
         }
-        else if(length.length>16 || length.length<16){
+        else if(length.length>16 || length.length<16 ){
             errors.account = 'enter 16 digits only';
+        }
+        else if(length < 0){
+            errors.account = 'enter positive digits only';
         }
         if (!values.amount) {
           errors.amount = 'amount is required';
         } else if (!/^[0-9]+$/.test(values.amount) && values.amount.value<0) {
           errors.amount = 'amount is invalid! Enter Numbers only';
+        }else if(amlength < 0){
+            errors.amount = 'enter positive digits only';
         }
       
         return errors;
