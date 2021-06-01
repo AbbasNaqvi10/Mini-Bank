@@ -36,6 +36,7 @@ const Transaction = () => {
                 history_old_data.push(history);
                 localStorage.setItem('history', JSON.stringify(history_old_data));
                 localStorage.setItem('balance', JSON.stringify(balance));
+                window.location.reload();
             }
             else{
                 alert("Not Enough Amount in Income!");
@@ -61,25 +62,27 @@ const Transaction = () => {
                     </div>
                     <br/>
                     <div className="title">
-                        <label>Account</label><br/>
-                        <input placeholder="Enter account number..."
-                        type='number'
-                        name='account'
-                        value={values.account}
-                        onChange={handleChange}
-                        ></input>
-                        {errors.account && <p>{errors.account}</p>}
-                    </div>
-                    <div className="title">
-                        <label>Amount</label><br/>
-                        <input placeholder="Enter amount..."
-                        type='number'
-                        name='amount'
-                        value={values.amount}
-                        onChange={handleChange}
-                        ></input>
-                        {errors.amount && <p>{errors.amount}</p>}
-                    </div>
+                    <label>Amount</label><br/>
+                    <input placeholder="Enter account number..."
+                    type='number'
+                    name='account'
+                    min="0"
+                    value={values.account}
+                    onChange={handleChange}
+                    ></input>
+                    {errors.account && <p>{errors.account}</p>}
+                </div>
+                <div className="title">
+                    <label>Amount</label><br/>
+                    <input placeholder="Enter amount..."
+                    type='number'
+                    name='amount'
+                    min="0"
+                    value={values.amount}
+                    onChange={handleChange}
+                    ></input>
+                    {errors.amount && <p>{errors.amount}</p>}
+                </div>
                     <br />
                     <button className="form-btn" style={{marginLeft:"10px"}} onClick={transfer}>Transaction</button>
                 </form>

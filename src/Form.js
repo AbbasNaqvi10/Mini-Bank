@@ -75,6 +75,7 @@ const Form = () => {
                 history.expense = parseInt(bank.expense);
                 history_old_data.push(history);
                 localStorage.setItem('history', JSON.stringify(history_old_data));
+                window.location.reload();
             }
             else{
                 alert("Not Enough Amount in Income!");
@@ -97,6 +98,7 @@ const Form = () => {
             history_old_data.push(history);
             localStorage.setItem('history', JSON.stringify(history_old_data));
             localStorage.setItem('balance', JSON.stringify(bank));
+            window.location.reload();
           }
           
         }
