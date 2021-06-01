@@ -1,43 +1,55 @@
 import React, {useState} from 'react';
 import './App.css';
-import MiniBank from './bank';
 
 const Form = () => {
 
-    var balance = JSON.parse(localStorage.getItem('balance'));
-    let bank = {
-        balance : balance.balance,
-        income : balance.income,
-        expense : balance.expense,
-    }
+  if (localStorage.getItem("history") === null){
+    localStorage.setItem('history', '[]');
+  }
 
-    const [values, setValues] = useState({
+  var history_old_data = [];
+
+  history_old_data = (JSON.parse(localStorage.getItem('history')));
+  var balance = JSON.parse(localStorage.getItem('balance'));
+  let history = {
+    title : "",
+    balance : 0,
+    income : 0,
+    expense : 0,
+  }
+  let bank = {
+      balance : balance.balance,
+      income : balance.income,
+      expense : balance.expense,
+  }
+
+  const [values, setValues] = useState({
         title: '',
         amount: '',
-    });
+  });
 
-    const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
-    const handleChange = e => {
+  const handleChange = e => {
         const { name, value } = e.target;
         setValues({
           ...values,
           [name]: value
         });
-    };
+  };
 
-    const handleSubmit = e => {
+  const handleSubmit = e => {
         e.preventDefault();
         setErrors(validateInfo(values));
-    };
+  };
 
-    function validateInfo(values) {
+  function validateInfo(values) {
         let errors = {};
         
         if (!values.title.trim()) {
           errors.title = 'title required';
         } else if (!/^[A-Za-z]+$/.test(values.title)) {
-          errors.title = 'title is invalid! Enter Alphabets only';
+          errors.title = 'title is invalid! Enter Alphabets only with no spaces';
         }
         if (!values.amount) {
           errors.amount = 'amount is required';
@@ -46,7 +58,7 @@ const Form = () => {
         }
       
         return errors;
-      }
+   }
 
     const expense = () => {
         if (Object.keys(errors).length === 0){
@@ -54,10 +66,15 @@ const Form = () => {
                 alert("Not Enough Amount! Add income first ");
                 return false;
             }
-            else if (parseInt(values.amount)<= parseInt(bank.balance) ){
+            else if (parseInt(values.amount)<= parseInt(bank.balance)){
                 bank.balance = parseInt(bank.balance) - parseInt(values.amount);
                 bank.expense = values.amount;
                 localStorage.setItem('balance', JSON.stringify(bank));
+                history.title = values.title;
+                history.balance = bank.balance;
+                history.expense = parseInt(bank.expense);
+                history_old_data.push(history);
+                localStorage.setItem('history', JSON.stringify(history_old_data));
             }
             else{
                 alert("Not Enough Amount in Income!");
@@ -68,9 +85,20 @@ const Form = () => {
 
       const income = () => {
         if (Object.keys(errors).length === 0){
-          bank.balance = parseInt(bank.balance) + parseInt(values.amount);
-          bank.income = values.amount;
-          localStorage.setItem('balance', JSON.stringify(bank));
+          if(values.amount.length===0 || values.amount===null){
+            return false;
+          }
+          else{
+            bank.balance = parseInt(bank.balance) + parseInt(values.amount);
+            bank.income = values.amount;
+            history.title = values.title;
+            history.balance = bank.balance;
+            history.income = parseInt(bank.income);
+            history_old_data.push(history);
+            localStorage.setItem('history', JSON.stringify(history_old_data));
+            localStorage.setItem('balance', JSON.stringify(bank));
+          }
+          
         }
     }
 
