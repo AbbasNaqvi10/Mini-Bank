@@ -20,10 +20,12 @@ h1{
   text-align: center;
   color: white;
   margin-bottom: -15px;
+  font-family: Copse;
 }
 
 .balance{
   text-align: center;
+  font-family: Copse;
 }
 
 .amount{
@@ -91,6 +93,7 @@ input:focus{
 }
 input:focus::placeholder {
   color: transparent;
+  font-family: Audiowide;
 }
 
 .form-btn{
@@ -140,6 +143,7 @@ input:focus::placeholder {
   font-weight: 800;
   font-size: 30px;
   border: none;
+  font-family: Fruktur;
 } 
 
 table, tr, td {
