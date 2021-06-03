@@ -112,14 +112,12 @@ const Form = () => {
     }
 
     const expense = () => {
-      expenseCheck();
       if(expenseCheck()===true){
         window.location.reload();
       }
     }
 
       const income = () => {
-        incomeCheck();
       if(incomeCheck()===true){
         window.location.reload();
       }
