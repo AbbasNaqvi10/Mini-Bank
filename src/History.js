@@ -4,19 +4,40 @@ import './App.css';
 const History = () => {
 
     var history = JSON.parse(localStorage.getItem('history'));
-
+    /*let data =[{
+        title:'',
+        amount:'',
+    }]
+    let display = [];
+    for(var i = (history.length-1); i>=0; i--){
+            data.title = history[i].title;
+        if(history[i].income!==0){
+            data.amount ="+" + history[i].income;
+            display.push(data);
+        }
+        else if(history[i].expense!==0){
+            data.amount = "-" + history[i].expense;
+            display.push(data);
+        }
+    }
+    console.log(display);
+    */
+   let amount
     function GenerateTable() {
 
         //Build an array containing Customer records.
         var i, data = [];
-        data.push(["Title", "Balance", "Income", "Expense"]);
+        data.push(["Title", "Amount"]);
 
         for(i = (history.length-1); i>=0; i--){
             var title = history[i].title;
-            var balance = history[i].balance;
-            var income = history[i].income;
-            var expense = history[i].expense;
-            data.push([title, balance, income, expense]);
+            if(history[i].income!==0){
+                amount = "+" + history[i].income;
+            }
+            else{
+                amount = "-" + history[i].expense;
+            }
+            data.push([title, amount]);
         }
         console.log(data);
  
@@ -49,10 +70,17 @@ const History = () => {
         dvTable.appendChild(table);
     }
 
+    window.onload = function() {
+        GenerateTable();
+      };
     return(
         <div>
-            <h1><button class="btn" onClick={GenerateTable}>History</button></h1>
-            <div id="dvTable"></div>
+            <h1>History</h1>
+            <br/>
+            <hr/>
+            <div id="dvTable">
+                
+            </div>
         </div>
     )
 }

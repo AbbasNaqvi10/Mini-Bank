@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Balance from './Balance';
 import History from './History';
-import Transaction from './Transaction';
 import Form from './Form';
 
 const Bank = () => {
@@ -23,9 +22,6 @@ const Bank = () => {
             <hr></hr>
             <Balance />
             <History />
-            <hr />
-            <Transaction />
-            <hr />
             <Form />
             <br />
 

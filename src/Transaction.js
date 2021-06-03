@@ -151,6 +151,7 @@ const Transaction = () => {
     return(
         <div>
             <h1><button class="btn" onClick={onClick}>Add New Transaction</button></h1>
+            <hr/>
             { showResults ? <Results /> : null }
         </div>
     )

@@ -4,8 +4,8 @@
   height: auto;
   z-index: 15;
   top: 30%;
-  left: 40%;
-  padding: 25px 25px 0px 25px;
+  left: 37%;
+  padding: 25px 0px 0px 25px;
   margin: -100px 0 0 -150px;
   background: dimgrey;
 }
@@ -112,27 +112,47 @@ input:focus::placeholder {
 
 #dvTable {
   font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
   margin: 20px;
   width: auto;
   height: auto;
 }
 
-#dvTable td, #dvTable th {
-  border: 1px solid #ddd;
-  padding: 8px;
+#dvTable td{
+  border: none;
+  padding: 8px 0 3px 0px;
   text-align: center;
+  color: lawngreen;
 }
 
-#dvTable tr:nth-child(even){background-color: #f2f2f2;}
 
-#dvTable tr:hover {background-color: #ddd;}
+/* #dvTable tr:nth-child(even){background-color: #f2f2f2;} */
+
+/* #dvTable tr:hover {background-color: #ddd;} */
 
 #dvTable th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: #04AA6D;
+  /* background-color: #04AA6D; */
   color: white;
   width: 13%;
+  font-weight: 800;
+  font-size: 30px;
+  border: none;
+} 
+
+table, tr, td {
+  border: none;
 }
+
+/* tbody>tr>:nth-child(2){
+  color:red;
+  width:200px;
+  text-align:center;
+ }
+ tbody>th>:nth-child(2){
+  color:red;
+  width:200px;
+  text-align:center;
+ } */
