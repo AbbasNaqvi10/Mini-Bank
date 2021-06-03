@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './App.css';
-import Bank from './bank'
 
 const Form = () => {
 
